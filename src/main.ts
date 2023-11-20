@@ -1,8 +1,18 @@
-import { init, h } from 'snabbdom'
 import AppCtrl from './ctrl'
 import view from './view';
 
-const patch = init([]);
+import {
+    init,
+    eventListenersModule,
+    h,
+  } from "snabbdom";
+  
+  const patch = init([
+    eventListenersModule // attaches event listeners
+  ]);
+
+
+
 const ctrl = new AppCtrl(redraw);
 const element = document.getElementById("main");
 element.innerHTML = "";

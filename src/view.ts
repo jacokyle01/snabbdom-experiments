@@ -1,12 +1,27 @@
 import { VNode, h } from "snabbdom";
 import AppCtrl from "./ctrl";
 
-const message = (ctrl: AppCtrl): VNode => {
-    return h("div", "Hello world");
-}
+const count = (ctrl: AppCtrl): VNode => {
+	return h("div#count", "count: " + ctrl.count);
+};
 
-const view = (ctrl: AppCtrl): VNode => {
-    return message(ctrl);
-}
+const switcher = (ctrl: AppCtrl): VNode => {
+	return h(
+		"div#switch",
+		{ on: { click: () => ctrl.toggleMode() } },
+		"Switch mode"
+	);
+};
 
-export default view; 
+const adjust = (ctrl: AppCtrl): VNode => {
+	return h(
+		"div#adjust",
+		{ on: { click: () => ctrl.handleAdjust() } },
+		ctrl.mode
+	);
+};
+
+const view = (ctrl: AppCtrl): VNode =>
+	h("div#buttons", [count(ctrl), switcher(ctrl), adjust(ctrl)]);
+
+export default view;
