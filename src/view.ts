@@ -1,6 +1,6 @@
 import { VNode, h } from "snabbdom";
 import AppCtrl from "./ctrl";
-import { Clock } from "./clock";
+import renderClock, { Clock } from "./clock";
 
 const clock = new Clock();
 
@@ -32,7 +32,12 @@ const getTime = (clock: Clock) => {
 	);
 };
 
+const countUp = (clock: Clock) => {
+	return renderClock(clock);
+}
+
+
 const view = (ctrl: AppCtrl): VNode =>
-	h("div#buttons", [count(ctrl), switcher(ctrl), adjust(ctrl), getTime(clock)]);
+	h("div#buttons", [count(ctrl), switcher(ctrl), adjust(ctrl), getTime(clock), countUp(clock)]);
 
 export default view;
